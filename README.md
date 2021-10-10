@@ -49,42 +49,48 @@ Using a series of steps, the data was prepared for the analysis. The steps are l
 
 * Standardize your dataset so that columns that contain larger values do not unduly influence the outcome.
 
-### Dimensionality Reduction and Models
+**Dimensionality Reduction and Models**
 
 * Creating dummy variables dramatically increased the number of features in the dataset. Dimensionality reduction with **PCA** was performed. Rather than specify the number of principal components when the **PCA** model is instantiated, the desired **explained variance was stated**. For example, say that a dataset has 100 features. Using **PCA**(n_components=0.99) creates a model that will preserve approximately 99% of the explained variance, whether that means reducing the dataset to 80 principal components or 3. For this project, 90% of the explained variance in dimensionality reduction was preserved. 
 *  Next, further reduction of the dataset dimensions with **t-SNE** was performed  and the results visually inspected. To accomplish this task, **t-SNE** was run on the principal components: the output of the **PCA** transformation. Then a scatter plot of the **t-SNE** output was created. 
 
-### Scatter Plot
+**Scatter Plot**
+
+![image](https://user-images.githubusercontent.com/82990618/136716217-bd3c964f-4ad8-456f-a690-95a537df3d0d.png)
+
+**Observation**
+
+Observe whether there are distinct clusters or not?
+
+There appears to be about 4 distinct clusters with 2 outliers
+
+**Cluster Analysis with k-Means**
+
+An elbow plot (**k-Means**) was created to identify the best number of clusters. Using a for-loop the inertia for each **k** between 1 through 10 was determined. The value of **k** where the elbow of the plot lies was determined, that is  at which value of **k** it appears. 
+
+**Elbow Curve Plot**
 
 
-**Fit the models**
 
-After the processing the data was fit to the Logistic Regression and Random Forest Classifier model to determine which was more accurate i.e., whether the Logistic Regression or the Random Forrest Classifier performed better. 
-The models were scored
+**Observation**
 
-**Scale and Fit the Models**
+From the elbow curve the k appears around 4 which is indicative of 4 clusters as seen in the scatter plot.
 
-Using StandardScaler, the training and testing sets were scaled. The scaled data were re-fitted to the LogisticRegression and RandomForestClassifier models and scored. 
-Again, which model performed better was determined. 
+### Observations and Recommendation
 
-### Prediction and Results
+**Observations:**
 
-**Prediction**
+*Scatter Plot from PCA and t-SNE analysis*
 
-*Unscaled Model*
+* There appears to be about 4 distinct clusters with 2 outliers. 
 
-Between the two forms of sklearn module (classification) I think the Random Forest Classifier will give a better result than the Logistic Regression, this is because in the Random Forrest Classifier the presence of the estimators which I look at as questions to help make the classification more precise helps make it more accurate. 
+*k-Means Elbow Curve*
 
-*Scaled Model*
+* From the elbow curve the k appears around 4 which is indicative of 4 clusters as seen in the scatter plot.
 
-Between the two forms of sklearn module (classification) I think the Random Forest Classifier will give a better result than the Logistic Regression irrespective of the data being scaled (i.e. making the data more uniformed due to difference in things like the units of, measure etc.), as stated above Random Forrest Classifier the presence of the estimators which I look at as questions to help make the classification more precise helps make it more accurate. 
+**Recommendation:**
 
-**Results**
+Since clustering is used in Unsupervised Machine Learning to classify data into structures to make it possible for easy manipulation as well as make the data easy to understand. Clustering minimizes the variance of data point within the cluster and combine data that are like each other. The Scatter plot was a little unclear of the number of possible clusters, so the elbow curve was employed. 
+The Elbow Curve is used to determine the optimal number of possible clusters. From the elbow curve the value of k=4 (the point where there is an improvement in distortion) which means further division of the data into clusters are not necessary. 
+The Cryptocurrency data can therefore be clustered into 4 groups for analysis.  
 
-*Unscaled Model*
-
-Between the two forms of sklearn module (classification) the Random Forest Classifier did perform better than the Logistic Regression as predicted, this is because in the Random Forrest Classifier 500 estimators were used and helped make the classification more precise/ accurate.  
-
-*Scaled Model*
-
-The results of the scaled data were not as predicted the testing score for the Logistic Regression was better than the Random Forrest Classifier, probably the Random Forrest Classifier was over fitted and the number of estimators my need to be changed
