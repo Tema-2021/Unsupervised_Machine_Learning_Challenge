@@ -70,7 +70,7 @@ An elbow plot (**k-Means**) was created to identify the best number of clusters.
 
 **Elbow Curve Plot**
 
-
+![image](https://user-images.githubusercontent.com/82990618/136716645-464f6ced-b623-4864-8171-c864091dd08a.png)
 
 **Observation**
 
